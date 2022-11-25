@@ -64,6 +64,38 @@ function random_color_from_pallet(x){
 }
 
 
+function cloud_setup(){
+  let ycloud = 0
+  for(let x = width/5 - 500; x < width/5 + 500; x++){
+    let xcloud = 0
+    for(let y = 100; y < height - 200; y += 2){
+      let angle = noise(xcloud,ycloud)*TAU
+      let v = p5.Vector.fromAngle(angle)
+      let n = noise(xcloud,ycloud)*300
+      push()
+      translate(x,y);
+      rotate(v.heading())
+      strokeWeight(angle/3)
+      stroke(n*2, n/10)
+      line(0,0,20,0)
+      pop()
+      xcloud += 0.1
+    }
+    ycloud += 0.01
+  }
+}
+
+function cloud_random(){
+  let cloud_r = random(1,3)
+  if(cloud_r = 1){
+    cloud_setup()
+  }
+  else{
+    return
+  }
+}
+
+
 function sun_setup(){
   noStroke()
   random_pallet()
@@ -125,8 +157,10 @@ function setup() {
   setupStandardAxes();
   //drawGridLines()
   sky_setup()
+  cloud_random()
   sun_setup()
   background_ground_setup()
+
   
 
 
