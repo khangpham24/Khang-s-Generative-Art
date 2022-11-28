@@ -85,15 +85,6 @@ function cloud_setup(){
   }
 }
 
-function cloud_random(){
-  let cloud_r = random(1,3)
-  if(cloud_r = 1){
-    cloud_setup()
-  }
-  else{
-    return
-  }
-}
 
 
 function sun_setup(){
@@ -150,15 +141,23 @@ function sky_setup(){
 
 
 
+function random_sun(){
+  let random_number = [1,2,3]
+  let g = random(random_number)
+  if (g == 1) {
+    sun_setup()
+  }
+}
 
+  
 function setup() {
   createCanvas(CANVAS_SIZE, CANVAS_SIZE);
   background(220)
   setupStandardAxes();
   //drawGridLines()
   sky_setup()
-  cloud_random()
-  sun_setup()
+  cloud_setup()
+  random_sun()
   background_ground_setup()
 
   
