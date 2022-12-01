@@ -123,6 +123,15 @@ function background_ground_setup(){
 
 }
 
+
+function random_mountain(){
+  beginShape()
+  
+
+  
+  
+}
+
 function makeLighterColor(r,g,b){
   r = r*0.5
   g = g*0.5
