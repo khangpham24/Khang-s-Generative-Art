@@ -1,7 +1,7 @@
 let CANVAS_SIZE = 600
 let GRID_SQUARES = 10;
 let STEP = CANVAS_SIZE/GRID_SQUARES;
-
+let c1;
 
 
 
@@ -89,10 +89,7 @@ function cloud_setup(){
 
 function sun_setup(){
   noStroke()
-  random_pallet()
-  random_color_from_pallet(random_pallet_color)
-  let suncolor = colorpallet
-  fill(suncolor)
+  fill(c1)
   let randomcx = random(-5,5)
   let randomcy = random(0,5)
   let randomcd = random(1,5)
@@ -105,10 +102,36 @@ function background_ground_setup(){
   noStroke()
   random_pallet()
   random_color_from_pallet(random_pallet_color)
-  const background_ground_color = colorpallet
+  background_ground_color = colorpallet
   fill(background_ground_color)
   rect(-5*STEP,-5*STEP,10*STEP,5*STEP)
+  
+  
+  noStroke()
+  random_pallet()
+  random_color_from_pallet(random_pallet_color)
+  groundcolor = colorpallet
+  c1 = color(groundcolor)
+  random_color_from_pallet(random_pallet_color)
+  random_pallet()
+  let groundcolor2 = colorpallet
+  getRGB(groundcolor2)
+  makeLighterColor(r,g,b)
+  c2 = color(r,g,b)
+  gradient_sky(-5*STEP,-5*STEP,10*STEP,5*STEP,c1,c2)
+  
+
 }
+
+function makeLighterColor(r,g,b){
+  r = r*0.5
+  g = g*0.5
+  b = b*0.5
+  return r
+  return g
+  return b
+}
+
 
 function getRGB(color){
   let RGBvalue = (color)
@@ -124,6 +147,7 @@ function getRGB(color){
 
 
 function sky_setup(){
+  noStroke()
   random_pallet()
   random_color_from_pallet(random_pallet_color)
   skycolor = colorpallet
@@ -142,7 +166,7 @@ function sky_setup(){
 
 
 function random_sun(){
-  let random_number = [1,2,3]
+  let random_number = [1,2]
   let g = random(random_number)
   if (g == 1) {
     sun_setup()
@@ -156,10 +180,10 @@ function setup() {
   setupStandardAxes();
   //drawGridLines()
   sky_setup()
-  cloud_setup()
   random_sun()
+  cloud_setup()
   background_ground_setup()
-
+  
   
 
 
