@@ -124,13 +124,6 @@ function background_ground_setup(){
 }
 
 
-function random_mountain(){
-  beginShape()
-  
-
-  
-  
-}
 
 function makeLighterColor(r,g,b){
   r = r*0.5
@@ -141,6 +134,14 @@ function makeLighterColor(r,g,b){
   return b
 }
 
+function makeDarkerColor(r,g,b){
+  r = r
+  g = g
+  b = b
+  return r
+  return g
+  return b
+}
 
 function getRGB(color){
   let RGBvalue = (color)
@@ -157,18 +158,20 @@ function getRGB(color){
 
 function sky_setup(){
   noStroke()
+  
   random_pallet()
   random_color_from_pallet(random_pallet_color)
   skycolor = colorpallet
   fill(skycolor)
-  rect(-5*STEP,1*STEP,10*STEP, 4*STEP)
+
   c1 = color(skycolor)
-  getRGB(skycolor)
   random_color_from_pallet(random_pallet_color)
   random_pallet()
   let skycolor2 = colorpallet
   c2 = color(skycolor2)
+  
   gradient_sky(-5*STEP,0,10*STEP,5*STEP,c1,c2)
+  
 }
 
 
@@ -187,20 +190,64 @@ function setup() {
   createCanvas(CANVAS_SIZE, CANVAS_SIZE);
   background(220)
   setupStandardAxes();
-  //drawGridLines()
   sky_setup()
   random_sun()
+  random_mountain()
   cloud_setup()
   background_ground_setup()
+  //drawGridLines()
+
   
   
 
 
 }
 
+let maxmountain = 4
+
+x1 = 10/maxmountain/3
+x2 = 10/maxmountain
+
+
+function random_mountain(){
+  noStroke()
+  
+  random_pallet()
+  random_color_from_pallet(random_pallet_color)
+  mountaincolor = colorpallet
+  mountaincolor_fill = color(mountaincolor)
+  mountaincolor_fill.setAlpha(50)
+
+  
+  fill(mountaincolor_fill)
+
+  
+  beginShape()
+  tint(255,100)
+  curveVertex(-6*STEP,0)
+  curveVertex(-6*STEP,0)
+  for(let j = 0; j <= maxmountain; j++)
+    for(let i = 1 ; i <=4; i++){
+      console.log(x1,x2)
+      x = random(x1,x2)
+      y = random(1,5)
+      curveVertex(-5*STEP+x*STEP,y*STEP)
+      console.log(x,y)
+      x1=x+10/maxmountain
+      x2=x+10/maxmountain/3
+
+    }
+  
+  curveVertex(5*STEP,0)
+  curveVertex(5*STEP,0)
+  endShape()
+  
+}
+
 
 
 function draw() {
+  setupStandardAxes();
 
-
+  noLoop();
 }
